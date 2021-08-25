@@ -147,7 +147,8 @@ img {
 }
 .timer,
 .turns,
-.score {
+.score,
+.match {
   padding: 0 40px 0 40px;
   background: linear-gradient(to right, white, #f3c7db);
   line-height: 40px;

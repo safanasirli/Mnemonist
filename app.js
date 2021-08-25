@@ -20,174 +20,216 @@ const images1 = [
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
 ];
 const images2 = [
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
   {
     frontFace: "./images/6.png",
     backFace: "./images/back-face1.png",
+    alt: 6,
   },
   {
     frontFace: "./images/6.png",
     backFace: "./images/back-face1.png",
+    alt: 6,
   },
   {
     frontFace: "./images/7.png",
     backFace: "./images/back-face1.png",
+    alt: 7,
   },
   {
     frontFace: "./images/7.png",
     backFace: "./images/back-face1.png",
+    alt: 7,
   },
 ];
 const images3 = [
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/1.png",
     backFace: "./images/back-face1.png",
+    alt: 1,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/2.png",
     backFace: "./images/back-face1.png",
+    alt: 2,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/3.png",
     backFace: "./images/back-face1.png",
+    alt: 3,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/4.png",
     backFace: "./images/back-face1.png",
+    alt: 4,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
   {
     frontFace: "./images/5.png",
     backFace: "./images/back-face1.png",
+    alt: 5,
   },
   {
     frontFace: "./images/6.png",
     backFace: "./images/back-face1.png",
+    alt: 6,
   },
   {
     frontFace: "./images/6.png",
     backFace: "./images/back-face1.png",
+    alt: 6,
   },
   {
     frontFace: "./images/7.png",
     backFace: "./images/back-face1.png",
+    alt: 7,
   },
   {
     frontFace: "./images/7.png",
     backFace: "./images/back-face1.png",
+    alt: 7,
   },
   {
     frontFace: "./images/8.png",
     backFace: "./images/back-face1.png",
+    alt: 8,
   },
   {
     frontFace: "./images/8.png",
     backFace: "./images/back-face1.png",
+    alt: 8,
   },
   {
     frontFace: "./images/9.png",
     backFace: "./images/back-face1.png",
+    alt: 9,
   },
   {
     frontFace: "./images/9.png",
     backFace: "./images/back-face1.png",
+    alt: 9,
   },
 ];
 const backFaceArray = [
@@ -223,19 +265,89 @@ shuffle(images2);
 shuffle(images3);
 
 function createCards(array, container) {
-    for (i = 0; i < array.length; i++) {
-        const img = document.createElement('img');
-        img.setAttribute('id', `${i}`);
-        img.src = array[i].backFace;
-        img.alt = array[i].alt
-        container.appendChild(img);
-        img.dataset.clicked = true
-        //console.log(images1[i])
-    }
+  for (i = 0; i < array.length; i++) {
+    const img = document.createElement("img");
+    img.setAttribute("id", `${i}`);
+    img.src = array[i].backFace;
+    img.alt = array[i].alt;
+    container.appendChild(img);
+    img.dataset.clicked = true;
+    //console.log(images1[i])
+  }
 }
 createCards(images1, smallCardContainer);
-createCards(images2, mediumCardContainer);
-createCards(images3, largeCardContainer);
+
+const cards = document.querySelectorAll("img");
+let lastClickedCardId = undefined;
+let currentId = undefined;
+//let matching = false;
+let match = 0
+let turns =0
+let timerStarted = false;
+function start(){
+for(i=0;i<cards.length; i++){
+  cards[i].addEventListener("click", (e) => {
+    let clicked = e.currentTarget.dataset.clicked;
+    //firstClick
+    if (
+      //!matching &&
+      lastClickedCardId == undefined &&
+      currentId == undefined &&
+      clicked == "true"
+    ) {
+      e.currentTarget.dataset.clicked = "false";
+      e.currentTarget.src = images1[e.currentTarget.id].frontFace;
+      lastClickedCardId = e.currentTarget.id;
+      console.log(lastClickedCardId);
+      turns++
+      document.querySelector('.turns').innerText= `Turns: ${turns}`
+      //secondClick
+    } else if (
+      //!matching &&
+      lastClickedCardId != undefined &&
+      currentId == undefined &&
+      clicked == "true" &&
+      e.currentTarget.id !== lastClickedCardId
+    ) {
+      e.currentTarget.dataset.clicked = "false";
+      currentId = e.currentTarget.id;
+      e.currentTarget.src = images1[currentId].frontFace;
+      console.log(lastClickedCardId);
+      turns++
+      document.querySelector('.turns').innerText= `Turns: ${turns}`
+      //match
+      if (cards[lastClickedCardId].alt === cards[currentId].alt) {
+        console.log(cards[e.currentTarget.id].alt);
+        console.log(cards[lastClickedCardId].alt);
+        setTimeout(() => {
+          document.getElementById(lastClickedCardId).remove();
+          document.getElementById(currentId).remove();
+        }, 1000);
+        match++
+        document.querySelector('.match').innerText= `Match: ${match}`
+        //nomatch
+      } else {
+        matching = true;
+        setTimeout(() => {
+          document.getElementById(lastClickedCardId).src = images1[lastClickedCardId].backFace;
+          document.getElementById(currentId).src = images1[currentId].backFace;
+          document.getElementById(currentId).dataset.clicked = "true";
+          document.getElementById(lastClickedCardId).dataset.clicked = "true";
+          currentId === undefined;
+          lastClickedCardId === undefined;
+          turns !==0
+          //matching = false;
+        }, 1000);
+      }
+    }
+  });
+};
+}
+start()
+console.log(lastClickedCardId);
+console.log(currentId);
+// createCards(images2, mediumCardContainer);
+// createCards(images3, largeCardContainer);
 
 infoBtn.addEventListener("click", openInfoCard);
 settingBtn.addEventListener("click", openModal);
