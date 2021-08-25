@@ -17,192 +17,210 @@ const mediumCardContainer = document.querySelector(".md-card-container");
 const largeCardContainer = document.querySelector(".lg-card-container");
 
 const images1 = [
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png",
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png",
-    },
-]
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+];
 const images2 = [
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/6.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/6.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/7.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/7.png",
-        backFace: "./images/back-face1.png"
-    },
-
-]
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/6.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/6.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/7.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/7.png",
+    backFace: "./images/back-face1.png",
+  },
+];
 const images3 = [
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/1.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/2.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/3.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/4.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/5.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/6.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/6.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/7.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/7.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/8.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/8.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/9.png",
-        backFace: "./images/back-face1.png"
-    },
-    {
-        frontFace: "./images/9.png",
-        backFace: "./images/back-face1.png"
-    },
-]
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/1.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/2.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/3.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/4.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/5.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/6.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/6.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/7.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/7.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/8.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/8.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/9.png",
+    backFace: "./images/back-face1.png",
+  },
+  {
+    frontFace: "./images/9.png",
+    backFace: "./images/back-face1.png",
+  },
+];
 const backFaceArray = [
-    { img: "./images/back-face.png" },
-    { img: "./images/back-face1.png" },
-    { img: "./images/back-face2.png" },
-    { img: "./images/back-face3.png" },
-    { img: "./images/back-face4.png" },
-    { img: "./images/back-face5.png" },
-    { img: "./images/back-face6.png" },
-    { img: "./images/back-face7.png" },
-    { img: "./images/back-face8.png" },
-    { img: "./images/back-face9.png" },
-]
+  { img: "./images/back-face.png" },
+  { img: "./images/back-face1.png" },
+  { img: "./images/back-face2.png" },
+  { img: "./images/back-face3.png" },
+  { img: "./images/back-face4.png" },
+  { img: "./images/back-face5.png" },
+  { img: "./images/back-face6.png" },
+  { img: "./images/back-face7.png" },
+  { img: "./images/back-face8.png" },
+  { img: "./images/back-face9.png" },
+];
+//Fisher–Yates Shuffle method to randomly rearrange the array.
+function shuffle(array) {
+  let m = array.length,
+    t,
+    i;
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+shuffle(images1);
+shuffle(images2);
+shuffle(images3);
 
 infoBtn.addEventListener("click", openInfoCard);
 settingBtn.addEventListener("click", openModal);
