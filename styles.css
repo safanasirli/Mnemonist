@@ -1,0 +1,131 @@
+
+body {
+  font-family: "Rampart One", cursive;
+  color: rgb(4, 26, 121);
+}
+.container {
+  background-color: #f3c7db;
+  margin: 2rem;
+  height: 90vh;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#flashCard,
+#modal {
+  display: none;
+  margin: 0 auto;
+  background-color: #9ca1f0;
+  color: #50096e;
+  margin: 0 auto;
+  z-index: 1;
+  top: 2rem;
+  height: 450px;
+  width: 400px;
+  position: fixed;
+}
+#infoCard {
+  display: none;
+  background-color: #9ca1f0;
+  color: #50096e;
+  width: 300px;
+  height: 300px;
+  top: 2rem;
+  margin: 0 auto;
+  position: fixed;
+}
+h1 {
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  font-size: 40px;
+}
+.radio-butttons {
+  display: flex;
+  flex-direction: row;
+  padding-left: 2rem;
+}
+.settings_container {
+  float: right;
+  cursor: pointer;
+  font-size: 40px;
+  margin-top: 0px;
+}
+#play-button {
+  font-family: "Monoton", cursive;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #e927df,
+    #490340,
+    #c92ff0,
+    #620974
+  );
+  color: white;
+  font-size: 30px;
+  border: none;
+  padding: 10px 30px 10px 30px;
+  border-radius: 5%;
+  margin-top: 10%;
+  cursor: pointer;
+}
+
+.radio-button {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.radio-label {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 3rem;
+}
+
+.fa-info-circle,
+.fa-cog {
+  color: #7a047a;
+}
+#settings-reset,
+#settings-apply {
+  background-color: darkviolet;
+  color: white;
+  display: inline-block;
+  align-content: center;
+  justify-content: center;
+  border: none;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5%;
+}
+.easy-game {
+  background-color: #f3c7db;
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.medium-game {
+  background-color: #f3c7db;
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.hard-game {
+  background-color: #f3c7db;
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+img {
+  width: 150px;
+  height: 210px;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+.sm-card-container,
+.md-card-container,
+.lg-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
