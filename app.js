@@ -234,6 +234,8 @@ function createCards(array, container) {
     }
 }
 createCards(images1, smallCardContainer);
+createCards(images2, mediumCardContainer);
+createCards(images3, largeCardContainer);
 
 infoBtn.addEventListener("click", openInfoCard);
 settingBtn.addEventListener("click", openModal);
