@@ -222,6 +222,19 @@ shuffle(images1);
 shuffle(images2);
 shuffle(images3);
 
+function createCards(array, container) {
+    for (i = 0; i < array.length; i++) {
+        const img = document.createElement('img');
+        img.setAttribute('id', `${i}`);
+        img.src = array[i].backFace;
+        img.alt = array[i].alt
+        container.appendChild(img);
+        img.dataset.clicked = true
+        //console.log(images1[i])
+    }
+}
+createCards(images1, smallCardContainer);
+
 infoBtn.addEventListener("click", openInfoCard);
 settingBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeInfoCard);
