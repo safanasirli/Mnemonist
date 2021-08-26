@@ -5,7 +5,7 @@ const applyBtn = document.querySelector("#settings-apply");
 const infoCard = document.querySelector("#infoCard");
 const modal = document.querySelector("#modal");
 const playBtn = document.querySelector("#play-button");
-let resetButton = document.querySelector("#reset-button");
+const resetButton = document.querySelector("#reset-button");
 const container = document.querySelector(".container");
 const easyGame = document.querySelector(".easy-game");
 const mediumGame = document.querySelector(".medium-game");
@@ -284,8 +284,10 @@ let lastClickedCardId = undefined;
 let matching = false;
 let match = 0;
 let turns = 0;
+let score = 0;
 let timerStarted = false;
-console.log(cards);
+
+document.querySelector(".score").innerText = `Score:${score}`;
 
 function playGame() {
   for (i = 0; i < cards.length; i++) {
@@ -315,8 +317,8 @@ function playGame() {
         //match
         if (cards[lastClickedCardId].alt == cards[e.target.id].alt) {
           setTimeout(() => {
-            document.getElementById(lastClickedCardId).remove();
-            document.getElementById(e.target.id).remove();
+            document.getElementById(lastClickedCardId).style.display = "none";
+            document.getElementById(e.target.id).style.display = "none";
             lastClickedCardId = undefined;
           }, 1000);
           match++;
@@ -353,6 +355,23 @@ function win() {
   document.querySelector(".easy-game").style.display = "none";
   document.querySelector(".win-container").style.display = "block";
 }
+function reset() {
+  document.querySelector(".win-container").style.display = "none";
+  document.querySelector(".easy-game").style.display = "block";
+  cards.forEach((card) => {
+    card.style.display = "block";
+    card.dataset.clicked = true;
+  });
+  score++;
+  turns = 0;
+  match = 0;
+  lastClickedCardId = undefined;
+  matching = false;
+  document.querySelector(".score").innerText = `Score:${score}`;
+  document.querySelector(".turns").innerText = `Turns ${turns}`;
+  document.querySelector(".match").innerText = `Match ${match}`;
+  startGame();
+}
 function startGame() {
   if (easy.checked) {
     startEasyGame();
@@ -364,6 +383,7 @@ function startGame() {
         cards[i].src = images1[i].backFace;
       }
     }, 2000);
+    playGame();
   } else if (medium.checked) {
     startMediumGame();
   } else if (hard.checked) {
@@ -396,7 +416,7 @@ function startHardGame() {
   hardGame.style.display = "block";
 }
 
-resetButton.addEventListener("click", startGame);
+resetButton.addEventListener("click", reset);
 infoBtn.addEventListener("click", openInfoCard);
 settingBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeInfoCard);
