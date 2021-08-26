@@ -5,6 +5,7 @@ const applyBtn = document.querySelector("#settings-apply");
 const infoCard = document.querySelector("#infoCard");
 const modal = document.querySelector("#modal");
 const playBtn = document.querySelector("#play-button");
+let resetButton = document.querySelector("#reset-button");
 const container = document.querySelector(".container");
 const easyGame = document.querySelector(".easy-game");
 const mediumGame = document.querySelector(".medium-game");
@@ -272,88 +273,87 @@ function createCards(array, container) {
     img.alt = array[i].alt;
     container.appendChild(img);
     img.dataset.clicked = true;
-    //console.log(images1[i])
   }
 }
 createCards(images1, smallCardContainer);
+createCards(images2, mediumCardContainer);
+createCards(images3, largeCardContainer);
 
 const cards = document.querySelectorAll("img");
 let lastClickedCardId = undefined;
-let currentId = undefined;
-//let matching = false;
-let match = 0
-let turns =0
+let matching = false;
+let match = 0;
+let turns = 0;
 let timerStarted = false;
-function start(){
-for(i=0;i<cards.length; i++){
-  cards[i].addEventListener("click", (e) => {
-    let clicked = e.currentTarget.dataset.clicked;
-    //firstClick
-    if (
-      //!matching &&
-      lastClickedCardId == undefined &&
-      currentId == undefined &&
-      clicked == "true"
-    ) {
-      e.currentTarget.dataset.clicked = "false";
-      e.currentTarget.src = images1[e.currentTarget.id].frontFace;
-      lastClickedCardId = e.currentTarget.id;
-      console.log(lastClickedCardId);
-      turns++
-      document.querySelector('.turns').innerText= `Turns: ${turns}`
-      //secondClick
-    } else if (
-      //!matching &&
-      lastClickedCardId != undefined &&
-      currentId == undefined &&
-      clicked == "true" &&
-      e.currentTarget.id !== lastClickedCardId
-    ) {
-      e.currentTarget.dataset.clicked = "false";
-      currentId = e.currentTarget.id;
-      e.currentTarget.src = images1[currentId].frontFace;
-      console.log(lastClickedCardId);
-      turns++
-      document.querySelector('.turns').innerText= `Turns: ${turns}`
-      //match
-      if (cards[lastClickedCardId].alt === cards[currentId].alt) {
-        console.log(cards[e.currentTarget.id].alt);
-        console.log(cards[lastClickedCardId].alt);
-        setTimeout(() => {
-          document.getElementById(lastClickedCardId).remove();
-          document.getElementById(currentId).remove();
-        }, 1000);
-        match++
-        document.querySelector('.match').innerText= `Match: ${match}`
-        //nomatch
-      } else {
-        matching = true;
-        setTimeout(() => {
-          document.getElementById(lastClickedCardId).src = images1[lastClickedCardId].backFace;
-          document.getElementById(currentId).src = images1[currentId].backFace;
-          document.getElementById(currentId).dataset.clicked = "true";
-          document.getElementById(lastClickedCardId).dataset.clicked = "true";
-          currentId === undefined;
-          lastClickedCardId === undefined;
-          turns !==0
-          //matching = false;
-        }, 1000);
-      }
-    }
-  });
-};
-}
-start()
-console.log(lastClickedCardId);
-console.log(currentId);
-// createCards(images2, mediumCardContainer);
-// createCards(images3, largeCardContainer);
+console.log(cards);
 
-infoBtn.addEventListener("click", openInfoCard);
-settingBtn.addEventListener("click", openModal);
-closeBtn.addEventListener("click", closeInfoCard);
-applyBtn.addEventListener("click", closeModal);
-playBtn.addEventListener("click", () => {
+function playGame() {
+  for (i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("click", (e) => {
+      let clicked = e.target.dataset.clicked;
+      //firstClick
+      if (!matching && lastClickedCardId === undefined && clicked == "true") {
+        console.log(lastClickedCardId);
+        e.target.dataset.clicked = "false";
+        e.target.src = images1[e.target.id].frontFace;
+        lastClickedCardId = e.target.id;
+        console.log(lastClickedCardId);
+        turns++;
+        document.querySelector(".turns").innerText = `Turns: ${turns}`;
+        //secondClick
+      } else if (
+        !matching &&
+        lastClickedCardId != undefined &&
+        clicked == "true" &&
+        e.target.id != lastClickedCardId
+      ) {
+        e.target.dataset.clicked = "false";
+        e.target.src = images1[e.target.id].frontFace;
+        console.log(lastClickedCardId);
+        turns++;
+        document.querySelector(".turns").innerText = `Turns: ${turns}`;
+        //match
+        if (cards[lastClickedCardId].alt == cards[e.target.id].alt) {
+          setTimeout(() => {
+            document.getElementById(lastClickedCardId).remove();
+            document.getElementById(e.target.id).remove();
+            lastClickedCardId = undefined;
+          }, 1000);
+          match++;
+          document.querySelector(".match").innerText = `Match: ${match}`;
+          if (match === 5) {
+            win();
+          }
+          //nomatch
+        } else {
+          matching = true;
+          document.getElementById(lastClickedCardId).src =
+            images1[lastClickedCardId].frontFace;
+          document.getElementById(e.target.id).src =
+            images1[e.target.id].frontFace;
+          setTimeout(() => {
+            document.getElementById(e.target.id).dataset.clicked = "true";
+            document.getElementById(e.target.id).src =
+              images1[e.target.id].backFace;
+            document.getElementById(lastClickedCardId).dataset.clicked = "true";
+            document.getElementById(lastClickedCardId).src =
+              images1[lastClickedCardId].backFace;
+            document.getElementById(lastClickedCardId).dataset.clicked = "true";
+            lastClickedCardId = undefined;
+            turns !== 0;
+            matching = false;
+          }, 1000);
+        }
+      }
+    });
+  }
+}
+
+function win() {
+  document.querySelector(".easy-game").style.display = "none";
+  document.querySelector(".win-container").style.display = "block";
+}
+function startGame() {
   if (easy.checked) {
     startEasyGame();
     for (i = 0; i < images1.length; i++) {
@@ -363,13 +363,14 @@ playBtn.addEventListener("click", () => {
       for (i = 0; i < images1.length; i++) {
         cards[i].src = images1[i].backFace;
       }
-    }, 4000);
+    }, 2000);
   } else if (medium.checked) {
     startMediumGame();
   } else if (hard.checked) {
     startHardGame();
   }
-});
+}
+
 function openModal() {
   modal.style.display = "block";
 }
@@ -394,3 +395,10 @@ function startHardGame() {
   container.style.display = "none";
   hardGame.style.display = "block";
 }
+
+resetButton.addEventListener("click", startGame);
+infoBtn.addEventListener("click", openInfoCard);
+settingBtn.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeInfoCard);
+applyBtn.addEventListener("click", closeModal);
+playBtn.addEventListener("click", startGame);
