@@ -285,13 +285,14 @@ let matching = false;
 let match = 0;
 let turns = 0;
 let score = 0;
-let time = 60;
+let time = 10;
 document.querySelector(".timer").innerText = `Time: 1:00`;
 const timer = setInterval(() => {
   time--;
   if (time >= 0) {
     document.querySelector(".timer").innerText = ` Time: ${time}`;
   } else {
+    lostGame();
   }
 }, 1000);
 function playGame() {
@@ -357,29 +358,36 @@ function playGame() {
 }
 
 function win() {
+  score++;
+  document.querySelector(".score").innerText = `Score: ${score}`;
   document.querySelector(".easy-game").style.display = "none";
-  document.querySelector(".win-container").style.display = "block";
+  document.querySelector(".result-container").style.display = "block";
+  document.querySelector(".result-text").innerText =
+    "Congrats You win the Game";
 }
 function reset() {
-  document.querySelector(".win-container").style.display = "none";
+  document.querySelector(".result-container").style.display = "none";
   document.querySelector(".easy-game").style.display = "block";
   cards.forEach((card) => {
     card.style.display = "block";
     card.dataset.clicked = true;
   });
-  score++;
   turns = 0;
   match = 0;
-  time = 60;
+  time = 10;
   lastClickedCardId = undefined;
   matching = false;
-  document.querySelector(".score").innerText = `Score: ${score}`;
   document.querySelector(".turns").innerText = `Turns: ${turns}`;
   document.querySelector(".match").innerText = `Match: ${match}`;
   document.querySelector(".timer").innerText = `Time: 1:00`;
   startGame();
 }
-
+function lostGame() {
+  document.querySelector(".easy-game").style.display = "none";
+  document.querySelector(".result-container").style.display = "block";
+  document.querySelector(".result-text").innerText =
+    "Time Up. Game Over";
+}
 function startGame() {
   if (easy.checked) {
     startEasyGame();

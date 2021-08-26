@@ -162,14 +162,14 @@ img {
   font-weight: 800;
   padding-right: 60px;
 }
-.win-container {
+.result-container {
   display: none;
   width: 500px;
   height:500px;
   margin:0 auto;
   background-color:cornflowerblue;
 }
-.win-text {
+.result-text {
   text-align:center;
   font-size: 30px;
 }
