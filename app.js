@@ -2,6 +2,7 @@ const infoBtn = document.querySelector("#openInfoCard");
 const settingBtn = document.querySelector("#openModal");
 const closeBtn = document.querySelector("#closeInfoCard");
 const applyBtn = document.querySelector("#settings-apply");
+const settingReset = document.querySelector("#settings-reset");
 const infoCard = document.querySelector("#infoCard");
 const modal = document.querySelector("#modal");
 const playBtn = document.querySelector("#play-button");
@@ -269,6 +270,7 @@ function createCards(array, container) {
   for (i = 0; i < array.length; i++) {
     const img = document.createElement("img");
     img.setAttribute("id", `${i}`);
+    img.classList.add("card");
     img.src = array[i].backFace;
     img.alt = array[i].alt;
     container.appendChild(img);
@@ -279,15 +281,15 @@ createCards(images1, smallCardContainer);
 createCards(images2, mediumCardContainer);
 createCards(images3, largeCardContainer);
 
-const cards = document.querySelectorAll("img");
+const cards = document.querySelectorAll(".card");
 let lastClickedCardId = undefined;
 let matching = false;
 let match = 0;
 let turns = 0;
 let score = 0;
 let time = 10;
-document.querySelector(".timer").innerText = `Time: 1:00`;
-const timer = setInterval(() => {
+
+setInterval(() => {
   time--;
   if (time >= 0) {
     document.querySelector(".timer").innerText = ` Time: ${time}`;
@@ -385,8 +387,7 @@ function reset() {
 function lostGame() {
   document.querySelector(".easy-game").style.display = "none";
   document.querySelector(".result-container").style.display = "block";
-  document.querySelector(".result-text").innerText =
-    "Time Up. Game Over";
+  document.querySelector(".result-text").innerText = "Time Up. Game Over";
 }
 function startGame() {
   if (easy.checked) {
@@ -438,3 +439,49 @@ settingBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeInfoCard);
 applyBtn.addEventListener("click", closeModal);
 playBtn.addEventListener("click", startGame);
+
+document.querySelector(".blue").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#54acf3";
+  easyGame.style.backgroundColor = "#54acf3";
+});
+document.querySelector(".green").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#bcf7a1";
+  easyGame.style.backgroundColor = "#bcf7a1";
+});
+document.querySelector(".white").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "white";
+  easyGame.style.backgroundColor = "white";
+});
+document.querySelector(".orange").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f7d9a1";
+  easyGame.style.backgroundColor = "#f7d9a1";
+});
+document.querySelector(".yellow").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#eeeea0";
+  easyGame.style.backgroundColor = "#eeeea0";
+});
+document.querySelector(".purple").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f3acf3";
+  easyGame.style.backgroundColor = "#f3acf3";
+});
+document.querySelector(".grey").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#dfdfdf";
+  easyGame.style.backgroundColor = "#dfdfdf";
+});
+document.querySelector(".pink").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f797b4";
+  easyGame.style.backgroundColor = "#f797b4";
+});
+document.querySelector(".red").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f39797";
+  easyGame.style.backgroundColor = "#f39797";
+});
+document.querySelector(".violet").addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f8abf8";
+  easyGame.style.backgroundColor = "#f8abf8";
+});
+settingReset.addEventListener("click", () => {
+  document.querySelector(".container").style.backgroundColor = "#f3c7db";
+  easyGame.style.backgroundColor = "#f3c7db";
+  modal.style.display = "none";
+});
