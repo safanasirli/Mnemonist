@@ -285,10 +285,15 @@ let matching = false;
 let match = 0;
 let turns = 0;
 let score = 0;
-let timerStarted = false;
-
-document.querySelector(".score").innerText = `Score:${score}`;
-
+let time = 60;
+document.querySelector(".timer").innerText = `Time: 1:00`;
+const timer = setInterval(() => {
+  time--;
+  if (time >= 0) {
+    document.querySelector(".timer").innerText = ` Time: ${time}`;
+  } else {
+  }
+}, 1000);
 function playGame() {
   for (i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", (e) => {
@@ -323,7 +328,7 @@ function playGame() {
           }, 1000);
           match++;
           document.querySelector(".match").innerText = `Match: ${match}`;
-          if (match === 5) {
+          if (match === 1) {
             win();
           }
           //nomatch
@@ -365,13 +370,16 @@ function reset() {
   score++;
   turns = 0;
   match = 0;
+  time = 60;
   lastClickedCardId = undefined;
   matching = false;
-  document.querySelector(".score").innerText = `Score:${score}`;
-  document.querySelector(".turns").innerText = `Turns ${turns}`;
-  document.querySelector(".match").innerText = `Match ${match}`;
+  document.querySelector(".score").innerText = `Score: ${score}`;
+  document.querySelector(".turns").innerText = `Turns: ${turns}`;
+  document.querySelector(".match").innerText = `Match: ${match}`;
+  document.querySelector(".timer").innerText = `Time: 1:00`;
   startGame();
 }
+
 function startGame() {
   if (easy.checked) {
     startEasyGame();

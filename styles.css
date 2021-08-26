@@ -170,13 +170,27 @@ img {
   background-color:cornflowerblue;
 }
 .win-text {
-  display: flex;
   text-align:center;
   font-size: 30px;
 }
 #reset-button {
+  font-family: "Monoton", cursive;
   display: flex;
-  margin:0 auto;
-  background-color:#490340;
-  color: white
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  background-image: linear-gradient(
+    to right,
+    #e927df,
+    #490340,
+    #c92ff0,
+    #620974
+  );
+  color: white;
+  font-size: 30px;
+  border: none;
+  padding: 10px 30px 10px 30px;
+  border-radius: 5%;
+  margin-top: 10%;
+  cursor: pointer;
 }
