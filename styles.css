@@ -4,10 +4,11 @@ body {
 }
 .container {
   background-color: #f3c7db;
-  margin: 2rem;
-  height: 90vh;
   max-width: 1000px;
   margin: 0 auto;
+  padding-bottom:7rem;
+  padding-right: 10px;
+  vertical-align: middle;
 }
 
 #modal {
@@ -20,8 +21,19 @@ body {
   left:30%;
   bottom:40%;
   height: 300px;
-  width: 400px;
+  width: 450px;
   position: fixed;
+}
+.card-back-image {
+  width: 40px;
+  height: 50px;
+}
+.cards-back-design,
+.background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
 }
 #infoCard {
   display: none;
@@ -36,6 +48,11 @@ body {
   margin: 0 auto;
   position: fixed;
   border: 2px solid #50096e;
+}
+#closeInfoCard {
+  display: flex;
+  top:0;
+  right:0;
 }
 .infocard-header {
   padding: 0;
@@ -56,7 +73,10 @@ h3 {
 .radio-butttons {
   display: flex;
   flex-direction: row;
-  padding-left: 2rem;
+  justify-content: center;
+}
+.radio-label {
+  padding-left:45px
 }
 .settings_container {
   float: right;
@@ -115,23 +135,7 @@ h3 {
   align-content: flex-end;
   justify-content: right;
 }
-.easy-game {
-  background-color: #f3c7db;
-  display: none;
-  max-width: 1000px;
-  min-width: 500px;
-  margin: 0 auto;
-  padding: 20px 20px 120px 20px;
-}
-.medium-game {
-  background-color: #f3c7db;
-  display: none;
-  max-width: 1000px;
-  min-width: 500px;
-  margin: 0 auto;
-  padding: 20px 20px 120px 20px;
-}
-.hard-game {
+.easy-game, .medium-game, .hard-game {
   background-color: #f3c7db;
   display: none;
   max-width: 1000px;
@@ -140,26 +144,49 @@ h3 {
   padding: 20px 20px 120px 20px;
 }
 img {
-  width: 120px;
-  height: 170px;
+  width: 100px;
+  height: 150px;
   padding: 1px;
   cursor: pointer;
 }
-.sm-card-container,
-.md-card-container,
-.lg-card-container {
+.sm-card-container{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
   margin: 0 auto;
   width: 500px;
   height: 500px;
   max-width: 800px;
   margin-top: 20px;
-  background-color: rgb(250, 245, 250);
+  padding-top:15px;
+  background-color: #faf5fa;
+}
+.md-card-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  margin: 0 auto;
+  width: 600px;
+  height: 500px;
+  max-width: 800px;
+  margin-top: 20px;
+  padding-top:15px;
+  background-color: #faf5fa;
+}
+.lg-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  height: 500px;
+  width: 800px;
+  margin-top: 20px;
+  padding-top:15px;
+  background-color: #faf5fa;
 }
 .game-info {
   display: flex;
+  width:500px;
   flex-direction: row;
   margin: 0 auto;
   justify-content: space-evenly;
@@ -211,16 +238,6 @@ img {
   border-radius: 5%;
   margin-top: 10%;
   cursor: pointer;
-}
-.card-back-image {
-  width: 40px;
-  height: 50px;
-}
-.cards-back-design,
-.background {
-  display: flex;
-  flex-direction: row;
-  padding: 0 auto;
 }
 .blue {
   background-color: #54acf3;

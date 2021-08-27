@@ -320,7 +320,7 @@ function startGame() {
   }
 }
 function countdown() {
-  if (lastClickedCardId !== undefined) {
+  if (turns !== 0) {
     time--;
     if (time >= 0) {
       document.querySelectorAll(".timer").forEach((element) => {
@@ -382,7 +382,7 @@ function playGame(array, cards) {
           document.querySelectorAll(".match").forEach((element) => {
             element.innerText = `Match: ${match}`;
           });
-          if (match === 1) {
+          if (match === 2) {
             win();
           }
           //nomatch
