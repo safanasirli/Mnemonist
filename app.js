@@ -486,13 +486,13 @@ function lostGame() {
 }
 
 function openModal() {
-  modal.style.display = "block";
+  modal.style.display = "inline-block";
 }
 function closeModal() {
   modal.style.display = "none";
 }
 function openInfoCard() {
-  infoCard.style.display = "block";
+  infoCard.style.display = "inline-block";
 }
 function closeInfoCard() {
   infoCard.style.display = "none";
