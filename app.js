@@ -17,7 +17,8 @@ const hard = document.querySelector("#hard");
 const smallCardContainer = document.querySelector(".sm-card-container");
 const mediumCardContainer = document.querySelector(".md-card-container");
 const largeCardContainer = document.querySelector(".lg-card-container");
-
+const matchAudio = new Audio("./images/match.wav");
+const notMatchAudio = new Audio("./images/notMatch.wav")
 const images1 = [
   {
     frontFace: "./images/1.png",
@@ -375,10 +376,12 @@ function playGame(array, cards) {
         });
         //match
         if (cards[lastClickedCardId].alt == cards[e.target.id].alt) {
+            matchAudio.play()
           setTimeout(() => {
             document.getElementById(lastClickedCardId).style.display = "none";
             document.getElementById(e.target.id).style.display = "none";
             lastClickedCardId = undefined;
+            
           }, 1000);
           match++;
           document.querySelectorAll(".match").forEach((element) => {
@@ -399,6 +402,7 @@ function playGame(array, cards) {
           }
           //nomatch
         } else {
+            notMatchAudio.play()
           matching = true;
           document.getElementById(lastClickedCardId).src =
             array[lastClickedCardId].frontFace;
