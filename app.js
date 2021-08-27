@@ -385,7 +385,7 @@ function playGame(array, cards) {
             element.innerText = `Match: ${match}`;
           });
           if (array == images1) {
-            if (match === 1) {
+            if (match === 5) {
               win();
             }
           } else if (array == images2) {
@@ -494,7 +494,9 @@ function lostGame() {
     hardGame.style.display = "none";
   }
   document.querySelector(".result-container").style.display = "block";
-  document.querySelector(".result-text").innerText = "Time Up. You Failed";
+  document.querySelector(
+    ".result-text"
+  ).innerText = `Time Up. You Failed! \n Score: ${score}`;
   document.querySelector(".result-container").style.backgroundColor = "#f76950";
   resetButton.innerText = "Retry";
 }
