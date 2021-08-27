@@ -255,6 +255,7 @@ shuffle(images1);
 shuffle(images2);
 shuffle(images3);
 
+//function to create cards
 function createCards(array, container, classname) {
   for (i = 0; i < array.length; i++) {
     const img = document.createElement("img");
@@ -265,24 +266,28 @@ function createCards(array, container, classname) {
     img.dataset.clicked = true;
   }
 }
-createCards(images1, smallCardContainer, "cards1");
-createCards(images2, mediumCardContainer, "cards2");
-createCards(images3, largeCardContainer, "cards3");
-
+if (easy.checked) {
+  createCards(images1, smallCardContainer, "cards1");
+} else if (medium.checked) {
+  createCards(images2, mediumCardContainer, "cards2");
+} else if (hard.checked) {
+  createCards(images3, largeCardContainer, "cards3");
+}
 const cards1 = document.querySelectorAll(".cards1");
 const cards2 = document.querySelectorAll(".cards2");
 const cards3 = document.querySelectorAll(".cards3");
+//variables with an initial value that will change during gameplay based on conditions
 let lastClickedCardId = undefined;
 let matching = false;
 let match = 0;
 let turns = 0;
 let score = 0;
-let time = 10;
-console.log(cards1);
+let time = 60;
+
+//method for play button
 function startGame() {
   if (easy.checked) {
     startEasyGame();
-
     for (i = 0; i < images1.length; i++) {
       cards1[i].src = images1[i].frontFace;
     }
@@ -291,11 +296,9 @@ function startGame() {
         cards1[i].src = images1[i].backFace;
       }
     }, 2000);
-
     playGame(images1, cards1);
   } else if (medium.checked) {
     startMediumGame();
-
     for (i = 0; i < images2.length; i++) {
       cards2[i].src = images2[i].frontFace;
     }
@@ -307,7 +310,6 @@ function startGame() {
     playGame(images2, cards2);
   } else if (hard.checked) {
     startHardGame();
-
     for (i = 0; i < images3.length; i++) {
       cards3[i].src = images3[i].frontFace;
     }
@@ -319,6 +321,8 @@ function startGame() {
     playGame(images3, cards3);
   }
 }
+
+//countdown
 function countdown() {
   if (turns !== 0) {
     time--;
@@ -331,16 +335,16 @@ function countdown() {
     }
   }
 }
-
+//clear interval to avoid countdown out of game.
 let timer = setInterval(countdown, 1000);
 clearInterval(timer);
 
+//function valid for all levels
 function playGame(array, cards) {
-  console.log(cards);
   document.querySelectorAll(".timer").forEach((element) => {
     element.innerText = `Time: 1:00`;
   });
-  time = 10;
+  time = 60;
   clearInterval(timer);
   timer = setInterval(countdown, 1000);
   for (i = 0; i < cards.length; i++) {
@@ -348,11 +352,9 @@ function playGame(array, cards) {
       let clicked = e.target.dataset.clicked;
       //firstClick
       if (!matching && lastClickedCardId === undefined && clicked == "true") {
-        console.log(lastClickedCardId);
         e.target.dataset.clicked = "false";
         e.target.src = array[e.target.id].frontFace;
         lastClickedCardId = e.target.id;
-        console.log(lastClickedCardId);
         turns++;
         document.querySelectorAll(".turns").forEach((element) => {
           element.innerText = `Turns: ${turns}`;
@@ -382,8 +384,18 @@ function playGame(array, cards) {
           document.querySelectorAll(".match").forEach((element) => {
             element.innerText = `Match: ${match}`;
           });
-          if (match === 2) {
-            win();
+          if (array == images1) {
+            if (match === 1) {
+              win();
+            }
+          } else if (array == images2) {
+            if (match === 1) {
+              win();
+            }
+          } else if (array == images3) {
+            if (match === 1) {
+              win();
+            }
           }
           //nomatch
         } else {
@@ -430,10 +442,7 @@ function win() {
 
 function reset() {
   if (easy.checked) {
-    console.log(images1);
     easyGame.style.display = "block";
-    lastClickedCardId = undefined;
-    matching = false;
     cards1.forEach((card) => {
       card.style.display = "block";
       card.dataset.clicked = true;
@@ -445,20 +454,23 @@ function reset() {
     cards2.forEach((card) => {
       card.style.display = "block";
       card.dataset.clicked = true;
+      lastClickedCardId = undefined;
+      matching = false;
     });
   } else if (hard.checked) {
     hardGame.style.display = "block";
     cards3.forEach((card) => {
       card.style.display = "block";
       card.dataset.clicked = true;
+      lastClickedCardId = undefined;
+      matching = false;
     });
   }
   document.querySelector(".result-container").style.display = "none";
   turns = 0;
   match = 0;
-  clearInterval(timer);
-  lastClickedCardId = undefined;
   matching = false;
+  clearInterval(timer);
   console.log(lastClickedCardId);
   document.querySelectorAll(".turns").forEach((element) => {
     element.innerText = `Turns: ${turns}`;
@@ -521,6 +533,12 @@ document.querySelectorAll(".card-back-image").forEach((img) => {
   img.addEventListener("click", (e) => {
     for (i = 0; i < images1.length; i++) {
       images1[i].backFace = `${e.currentTarget.src}`;
+    }
+    for (i = 0; i < images2.length; i++) {
+      images2[i].backFace = `${e.currentTarget.src}`;
+    }
+    for (i = 0; i < images3.length; i++) {
+      images3[i].backFace = `${e.currentTarget.src}`;
     }
   });
 });
