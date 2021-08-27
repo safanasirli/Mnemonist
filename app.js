@@ -320,13 +320,15 @@ function startGame() {
   }
 }
 function countdown() {
-  time--;
-  if (time >= 0) {
-    document.querySelectorAll(".timer").forEach((element) => {
-      element.innerText = ` Time: ${time}`;
-    });
-  } else {
-    lostGame();
+  if (lastClickedCardId !== undefined) {
+    time--;
+    if (time >= 0) {
+      document.querySelectorAll(".timer").forEach((element) => {
+        element.innerText = ` Time: ${time}`;
+      });
+    } else {
+      lostGame();
+    }
   }
 }
 
