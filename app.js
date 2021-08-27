@@ -234,28 +234,17 @@ const images3 = [
     alt: 9,
   },
 ];
-const backFaceArray = [
-  { img: "./images/back-face.png" },
-  { img: "./images/back-face1.png" },
-  { img: "./images/back-face2.png" },
-  { img: "./images/back-face3.png" },
-  { img: "./images/back-face4.png" },
-  { img: "./images/back-face5.png" },
-  { img: "./images/back-face6.png" },
-  { img: "./images/back-face7.png" },
-  { img: "./images/back-face8.png" },
-  { img: "./images/back-face9.png" },
-];
+
 //Fisher–Yates Shuffle method to randomly rearrange the array.
 function shuffle(array) {
   let m = array.length,
     t,
     i;
-  // While there remain elements to shuffle…
+  //   // While there remain elements to shuffle…
   while (m) {
-    // Pick a remaining element…
+    //     // Pick a remaining element…
     i = Math.floor(Math.random() * m--);
-    // And swap it with the current element.
+    //     // And swap it with the current element.
     t = array[m];
     array[m] = array[i];
     array[i] = t;
@@ -266,38 +255,92 @@ shuffle(images1);
 shuffle(images2);
 shuffle(images3);
 
-function createCards(array, container) {
+function createCards(array, container, classname) {
   for (i = 0; i < array.length; i++) {
     const img = document.createElement("img");
     img.setAttribute("id", `${i}`);
-    img.classList.add("card");
-    img.src = array[i].backFace;
+    img.classList.add(classname);
     img.alt = array[i].alt;
     container.appendChild(img);
     img.dataset.clicked = true;
   }
 }
-createCards(images1, smallCardContainer);
-createCards(images2, mediumCardContainer);
-createCards(images3, largeCardContainer);
+createCards(images1, smallCardContainer, "cards1");
+createCards(images2, mediumCardContainer, "cards2");
+createCards(images3, largeCardContainer, "cards3");
 
-const cards = document.querySelectorAll(".card");
+const cards1 = document.querySelectorAll(".cards1");
+const cards2 = document.querySelectorAll(".cards2");
+const cards3 = document.querySelectorAll(".cards3");
 let lastClickedCardId = undefined;
 let matching = false;
 let match = 0;
 let turns = 0;
 let score = 0;
 let time = 10;
+console.log(cards1);
+function startGame() {
+  if (easy.checked) {
+    startEasyGame();
 
-setInterval(() => {
+    for (i = 0; i < images1.length; i++) {
+      cards1[i].src = images1[i].frontFace;
+    }
+    setTimeout(() => {
+      for (i = 0; i < images1.length; i++) {
+        cards1[i].src = images1[i].backFace;
+      }
+    }, 2000);
+
+    playGame(images1, cards1);
+  } else if (medium.checked) {
+    startMediumGame();
+
+    for (i = 0; i < images2.length; i++) {
+      cards2[i].src = images2[i].frontFace;
+    }
+    setTimeout(() => {
+      for (i = 0; i < images2.length; i++) {
+        cards2[i].src = images2[i].backFace;
+      }
+    }, 2000);
+    playGame(images2, cards2);
+  } else if (hard.checked) {
+    startHardGame();
+
+    for (i = 0; i < images3.length; i++) {
+      cards3[i].src = images3[i].frontFace;
+    }
+    setTimeout(() => {
+      for (i = 0; i < images3.length; i++) {
+        cards3[i].src = images3[i].backFace;
+      }
+    }, 2000);
+    playGame(images3, cards3);
+  }
+}
+function countdown() {
   time--;
   if (time >= 0) {
-    document.querySelector(".timer").innerText = ` Time: ${time}`;
+    document.querySelectorAll(".timer").forEach((element) => {
+      element.innerText = ` Time: ${time}`;
+    });
   } else {
     lostGame();
   }
-}, 1000);
-function playGame() {
+}
+
+let timer = setInterval(countdown, 1000);
+clearInterval(timer);
+
+function playGame(array, cards) {
+  console.log(cards);
+  document.querySelectorAll(".timer").forEach((element) => {
+    element.innerText = `Time: 1:00`;
+  });
+  time = 10;
+  clearInterval(timer);
+  timer = setInterval(countdown, 1000);
   for (i = 0; i < cards.length; i++) {
     cards[i].addEventListener("click", (e) => {
       let clicked = e.target.dataset.clicked;
@@ -305,11 +348,13 @@ function playGame() {
       if (!matching && lastClickedCardId === undefined && clicked == "true") {
         console.log(lastClickedCardId);
         e.target.dataset.clicked = "false";
-        e.target.src = images1[e.target.id].frontFace;
+        e.target.src = array[e.target.id].frontFace;
         lastClickedCardId = e.target.id;
         console.log(lastClickedCardId);
         turns++;
-        document.querySelector(".turns").innerText = `Turns: ${turns}`;
+        document.querySelectorAll(".turns").forEach((element) => {
+          element.innerText = `Turns: ${turns}`;
+        });
         //secondClick
       } else if (
         !matching &&
@@ -318,10 +363,12 @@ function playGame() {
         e.target.id != lastClickedCardId
       ) {
         e.target.dataset.clicked = "false";
-        e.target.src = images1[e.target.id].frontFace;
+        e.target.src = array[e.target.id].frontFace;
         console.log(lastClickedCardId);
         turns++;
-        document.querySelector(".turns").innerText = `Turns: ${turns}`;
+        document.querySelectorAll(".turns").forEach((element) => {
+          element.innerText = `Turns: ${turns}`;
+        });
         //match
         if (cards[lastClickedCardId].alt == cards[e.target.id].alt) {
           setTimeout(() => {
@@ -330,7 +377,9 @@ function playGame() {
             lastClickedCardId = undefined;
           }, 1000);
           match++;
-          document.querySelector(".match").innerText = `Match: ${match}`;
+          document.querySelectorAll(".match").forEach((element) => {
+            element.innerText = `Match: ${match}`;
+          });
           if (match === 1) {
             win();
           }
@@ -338,16 +387,16 @@ function playGame() {
         } else {
           matching = true;
           document.getElementById(lastClickedCardId).src =
-            images1[lastClickedCardId].frontFace;
+            array[lastClickedCardId].frontFace;
           document.getElementById(e.target.id).src =
-            images1[e.target.id].frontFace;
+            array[e.target.id].frontFace;
           setTimeout(() => {
             document.getElementById(e.target.id).dataset.clicked = "true";
             document.getElementById(e.target.id).src =
-              images1[e.target.id].backFace;
+              array[e.target.id].backFace;
             document.getElementById(lastClickedCardId).dataset.clicked = "true";
             document.getElementById(lastClickedCardId).src =
-              images1[lastClickedCardId].backFace;
+              array[lastClickedCardId].backFace;
             document.getElementById(lastClickedCardId).dataset.clicked = "true";
             lastClickedCardId = undefined;
             turns !== 0;
@@ -360,52 +409,78 @@ function playGame() {
 }
 
 function win() {
+  if (easy.checked) {
+    easyGame.style.display = "none";
+  } else if (medium.checked) {
+    mediumGame.style.display = "none";
+  } else if (hard.checked) {
+    hardGame.style.display = "none";
+  }
   score++;
-  document.querySelector(".score").innerText = `Score: ${score}`;
-  document.querySelector(".easy-game").style.display = "none";
+  document.querySelectorAll(".score").forEach((element) => {
+    element.innerText = `Score: ${score}`;
+  });
   document.querySelector(".result-container").style.display = "block";
   document.querySelector(".result-text").innerText =
-    "Congrats You win the Game";
+    "Congrats! You win the Game";
+  resetButton.innerText = "Next";
 }
+
 function reset() {
+  if (easy.checked) {
+    console.log(images1);
+    easyGame.style.display = "block";
+    lastClickedCardId = undefined;
+    matching = false;
+    cards1.forEach((card) => {
+      card.style.display = "block";
+      card.dataset.clicked = true;
+      lastClickedCardId = undefined;
+      matching = false;
+    });
+  } else if (medium.checked) {
+    mediumGame.style.display = "block";
+    cards2.forEach((card) => {
+      card.style.display = "block";
+      card.dataset.clicked = true;
+    });
+  } else if (hard.checked) {
+    hardGame.style.display = "block";
+    cards3.forEach((card) => {
+      card.style.display = "block";
+      card.dataset.clicked = true;
+    });
+  }
   document.querySelector(".result-container").style.display = "none";
-  document.querySelector(".easy-game").style.display = "block";
-  cards.forEach((card) => {
-    card.style.display = "block";
-    card.dataset.clicked = true;
-  });
   turns = 0;
   match = 0;
-  time = 10;
+  clearInterval(timer);
   lastClickedCardId = undefined;
   matching = false;
-  document.querySelector(".turns").innerText = `Turns: ${turns}`;
-  document.querySelector(".match").innerText = `Match: ${match}`;
-  document.querySelector(".timer").innerText = `Time: 1:00`;
+  console.log(lastClickedCardId);
+  document.querySelectorAll(".turns").forEach((element) => {
+    element.innerText = `Turns: ${turns}`;
+  });
+  document.querySelectorAll(".match").forEach((element) => {
+    element.innerText = `Match: ${match}`;
+  });
+  document.querySelectorAll(".timer").forEach((element) => {
+    element.innerText = `Time: 1:00`;
+  });
   startGame();
 }
 function lostGame() {
-  document.querySelector(".easy-game").style.display = "none";
-  document.querySelector(".result-container").style.display = "block";
-  document.querySelector(".result-text").innerText = "Time Up. Game Over";
-}
-function startGame() {
   if (easy.checked) {
-    startEasyGame();
-    for (i = 0; i < images1.length; i++) {
-      cards[i].src = images1[i].frontFace;
-    }
-    setTimeout(() => {
-      for (i = 0; i < images1.length; i++) {
-        cards[i].src = images1[i].backFace;
-      }
-    }, 2000);
-    playGame();
+    easyGame.style.display = "none";
   } else if (medium.checked) {
-    startMediumGame();
+    mediumGame.style.display = "none";
   } else if (hard.checked) {
-    startHardGame();
+    hardGame.style.display = "none";
   }
+
+  document.querySelector(".result-container").style.display = "block";
+  document.querySelector(".result-text").innerText = "Time Up. You Failed";
+  resetButton.innerText = "Retry";
 }
 
 function openModal() {
@@ -439,6 +514,14 @@ settingBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeInfoCard);
 applyBtn.addEventListener("click", closeModal);
 playBtn.addEventListener("click", startGame);
+
+document.querySelectorAll(".card-back-image").forEach((img) => {
+  img.addEventListener("click", (e) => {
+    for (i = 0; i < images1.length; i++) {
+      images1[i].backFace = `${e.currentTarget.src}`;
+    }
+  });
+});
 
 document.querySelector(".blue").addEventListener("click", () => {
   document.querySelector(".container").style.backgroundColor = "#54acf3";
