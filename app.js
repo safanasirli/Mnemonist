@@ -389,11 +389,11 @@ function playGame(array, cards) {
               win();
             }
           } else if (array == images2) {
-            if (match === 1) {
+            if (match === 7) {
               win();
             }
           } else if (array == images3) {
-            if (match === 1) {
+            if (match === 9) {
               win();
             }
           }
@@ -435,8 +435,10 @@ function win() {
     element.innerText = `Score: ${score}`;
   });
   document.querySelector(".result-container").style.display = "block";
-  document.querySelector(".result-text").innerText =
-    "Congrats! You win the Game";
+  document.querySelector(
+    ".result-text"
+  ).innerText = `Congrats! You win the Game! Score: ${score}`;
+  document.querySelector(".result-container").style.backgroundColor = "#54e25b";
   resetButton.innerText = "Next";
 }
 
@@ -491,9 +493,9 @@ function lostGame() {
   } else if (hard.checked) {
     hardGame.style.display = "none";
   }
-
   document.querySelector(".result-container").style.display = "block";
   document.querySelector(".result-text").innerText = "Time Up. You Failed";
+  document.querySelector(".result-container").style.backgroundColor = "#f76950";
   resetButton.innerText = "Retry";
 }
 
